@@ -7,10 +7,17 @@ MAX_SHIFT_HOURS = 1
 
 def plan_shift(current_start, target_start, nights):
     """Return a list of sleep start times, one per night, moving toward the target."""
+    step = timedelta(hours=MAX_SHIFT_HOURS)
     schedule = []
     for night in range(nights):
-        remaining = current_start - target_start            # how far is start from target_start?
-        move = min(remaining, timedelta(hours=MAX_SHIFT_HOURS))  if remaining >= 0 else max(remaining, timedelta(hours=MAX_SHIFT_HOURS))                # the smaller of the step and the remaining distance
-        current_start+=move               # move start toward the target
+        gap = target_start - current_start        # + means target is later, - means earlier
+        if gap > timedelta(0):
+            move = min(gap, step)                 # go later, never past the target
+        else:
+            move = max(gap, -step)                # go earlier, never past the target
+        current_start += move
         schedule.append(current_start)
     return schedule
+
+def caffeine_cutoff(sleep_block, rules):
+    return sleep_block.start_time - timedelta(hours=rules["caffeine_cutoff_hours_before_sleep"])

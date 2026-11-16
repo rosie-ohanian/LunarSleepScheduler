@@ -1,0 +1,6 @@
+{
+  "max_shift_hours": 1,
+  "caffeine_cutoff_hours_before_sleep": 8,
+  "melatonin_hours_before_sleep": 0.5,
+  "winddown_hours_before_sleep": 2
+}
