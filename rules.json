@@ -1,6 +1,11 @@
 {
+  "_note": "placeholder values, pending biomedical review",
   "max_shift_hours": 1,
   "caffeine_cutoff_hours_before_sleep": 8,
-  "melatonin_hours_before_sleep": 0.5,
-  "winddown_hours_before_sleep": 2
+  "winddown_hours_before_sleep": 2,
+  "fatigue_penalty_per_hour_short": 6,
+  "score_ok": 80,
+  "score_warn": 60,
+  "pre_event_buffer_hours": 2,
+  "min_sleep_block_hours": 1
 }

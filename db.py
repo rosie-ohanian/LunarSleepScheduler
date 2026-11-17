@@ -93,3 +93,17 @@ def get_members_on(event_id):
     """, (event_id,)).fetchall()
     conn.close()
     return [row[0] for row in rows]
+
+def get_member(name):
+    conn = get_conn()
+    row = conn.execute(
+        "SELECT sleep_need_hours FROM members WHERE name = ?", (name,)
+    ).fetchone()
+    conn.close()
+    return row[0]
+
+def list_members():
+    conn = get_conn()
+    rows = conn.execute("SELECT name FROM members ORDER BY name").fetchall()
+    conn.close()
+    return [r[0] for r in rows]
